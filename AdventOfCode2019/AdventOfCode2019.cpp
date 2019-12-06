@@ -4,11 +4,13 @@
 #include "Src/Day2.hpp"
 #include "Src/Day3.hpp"
 #include "Src/Day4.hpp"
+#include "Src/Day5.hpp"
 
 int main()
 {
 	//day1();
 	//day2();
 	//day3();
-	day4();
+	//day4();
+	day5();
 }
