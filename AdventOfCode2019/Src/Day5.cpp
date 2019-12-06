@@ -24,7 +24,7 @@ void day5() {
 	std::transform(strings.begin(), strings.end(), std::back_inserter(numbersOriginal), &boost::lexical_cast<int, std::string>);
 
 	// Reliquat, je garde lol
-	std::vector<int> numbers(10000);
+	std::vector<int> numbers(numbersOriginal.size());
 	std::copy(numbersOriginal.begin(), numbersOriginal.end(), numbers.begin());
 
 	int result = runIntcodeComputer(numbers);
@@ -110,6 +110,46 @@ int runIntcodeComputer(std::vector<int> &values) {
 			std::cout << "Output is: " << targetValue << std::endl << std::endl;
 
 			cursorIncrement = 2;
+			break;
+		}
+		case 5:
+		case 6:
+		{
+			int valueAtAddress1 = values[cursorPosition + 1];
+			int value1 = parametersMode[0] ? valueAtAddress1 : values[valueAtAddress1];
+
+			int valueAtAddress2 = values[cursorPosition + 2];
+			int value2 = parametersMode[1] ? valueAtAddress2 : values[valueAtAddress2];
+
+			if (opcode == 5 && value1 != 0 || opcode == 6 && value1 == 0) {
+				cursorPosition = value2;
+				cursorIncrement = 0;
+			}
+			else {
+				cursorIncrement = 3;
+			}
+			break;
+		}
+		case 7:
+		case 8:
+		{
+			// Add
+			int valueAtAddress1 = values[cursorPosition + 1];
+			int value1 = parametersMode[0] ? valueAtAddress1 : values[valueAtAddress1];
+
+			int valueAtAddress2 = values[cursorPosition + 2];
+			int value2 = parametersMode[1] ? valueAtAddress2 : values[valueAtAddress2];
+
+			int valueAtAddressTarget = values[cursorPosition + 3];
+
+			if ( (opcode == 7 && value1 < value2) || (opcode == 8 && value1 == value2)) {
+				values[valueAtAddressTarget] = 1;
+			}
+			else {
+				values[valueAtAddressTarget] = 0;
+			}
+
+			cursorIncrement = 4;
 			break;
 		}
 		}
