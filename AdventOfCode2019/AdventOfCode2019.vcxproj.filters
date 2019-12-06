@@ -13,25 +13,22 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Cpp">
-      <UniqueIdentifier>{2a6e40c0-7e73-4140-baca-94ec0154e0f4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Hpp">
-      <UniqueIdentifier>{de85bf4f-d420-40b3-a593-a927a8c88f7f}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Src\Day1.hpp">
-      <Filter>Source Files\Hpp</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Src\Day2.hpp">
-      <Filter>Source Files\Hpp</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Src\Day3.hpp">
-      <Filter>Source Files\Hpp</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Day4.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -42,13 +39,16 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Src\Day1.cpp">
-      <Filter>Source Files\Cpp</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Src\Day2.cpp">
-      <Filter>Source Files\Cpp</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Src\Day3.cpp">
-      <Filter>Source Files\Cpp</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Day4.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +59,9 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="Data\Day3.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Data\Day4.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
