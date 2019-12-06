@@ -10,8 +10,8 @@
 
 #include "Day3.hpp"
 
-std::unordered_map<int, std::unordered_map<int, bool>> fillMap(std::vector<std::string>& instructions);
-bool mapsOverlapAtCoordinate(std::unordered_map<int, std::unordered_map<int, bool>>& map1, std::unordered_map<int, std::unordered_map<int, bool>>& map2, int x, int y);
+std::unordered_map<int, std::unordered_map<int, int>> fillMap(std::vector<std::string>& instructions);
+bool mapsOverlapAtCoordinate(std::unordered_map<int, std::unordered_map<int, int>>& map1, std::unordered_map<int, std::unordered_map<int, int>>& map2, int x, int y);
 
 void day3() {
 	std::ifstream inputFile("Data/Day3.txt");
@@ -31,15 +31,21 @@ void day3() {
 	std::pair<int, int> closestIntersection(0, 0);
 	int closestDistance = 99999999;
 
-	for (std::unordered_map<int, std::unordered_map<int, bool>>::iterator it = map1.begin(); it != map1.end(); ++it) {
+	for (std::unordered_map<int, std::unordered_map<int, int>>::iterator it = map1.begin(); it != map1.end(); ++it) {
 		int x = it->first;
-		for (std::unordered_map<int, bool>::iterator it2 = it->second.begin(); it2 != it->second.end(); ++it2) {
+		for (std::unordered_map<int, int>::iterator it2 = it->second.begin(); it2 != it->second.end(); ++it2) {
 			int y = it2->first;
 
 			bool overlap = mapsOverlapAtCoordinate(map1, map2, x, y);
-
+			
 			if (overlap) {
-				int distance = abs(x) + abs(y);
+				// Check for Part 1 (closest Manhattan Distance)
+				//	int distance = abs(x) + abs(y);
+
+				// Check for Part 2 (shortest path)
+				int distance1 = map1[x][y];
+				int distance2 = map2[x][y];
+				int distance = distance1 + distance2;
 				//std::cout << distance << " ";
 				if (distance < closestDistance) {
 					closestIntersection.first = x;
@@ -47,16 +53,16 @@ void day3() {
 					closestDistance = distance;
 					std::cout << "New closest : " << closestIntersection.first << "," << closestIntersection.second << " - Distance : " << closestDistance << std::endl;
 				}
-				
 			}
 		}
 	}
 
 }
 
-std::unordered_map<int, std::unordered_map<int, bool>> fillMap(std::vector<std::string>& instructions) {
-	std::unordered_map<int, std::unordered_map<int, bool>> map; 
+std::unordered_map<int, std::unordered_map<int, int>> fillMap(std::vector<std::string>& instructions) {
+	std::unordered_map<int, std::unordered_map<int, int>> map;
 	std::pair<int, int> currentPosition(0, 0);
+	int distance = 0;
 
 	for (auto instruction = instructions.begin(); instruction != instructions.end(); ++instruction) {
 		char direction = instruction->at(0);
@@ -68,25 +74,29 @@ std::unordered_map<int, std::unordered_map<int, bool>> fillMap(std::vector<std::
 		case 'U':
 			for (int y = 0; y < number; ++y) {
 				currentPosition.second++;
-				map[currentPosition.first][currentPosition.second] = true;
+				distance++;
+				map[currentPosition.first][currentPosition.second] = distance;
 			}
 			break;
 		case 'R':
 			for (int x = 0; x < number; ++x) {
 				currentPosition.first++;
-				map[currentPosition.first][currentPosition.second] = true;
+				distance++;
+				map[currentPosition.first][currentPosition.second] = distance;
 			}
 			break;
 		case 'D':
 			for (int y = 0; y < number; ++y) {
 				currentPosition.second--;
-				map[currentPosition.first][currentPosition.second] = true;
+				distance++;
+				map[currentPosition.first][currentPosition.second] = distance;
 			}
 			break;
 		case 'L':
 			for (int x = 0; x < number; ++x) {
 				currentPosition.first--;
-				map[currentPosition.first][currentPosition.second] = true;
+				distance++;
+				map[currentPosition.first][currentPosition.second] = distance;
 			}
 			break;
 		}
@@ -95,7 +105,7 @@ std::unordered_map<int, std::unordered_map<int, bool>> fillMap(std::vector<std::
 	return map;
 }
 
-bool mapsOverlapAtCoordinate(std::unordered_map<int, std::unordered_map<int, bool>>& map1, std::unordered_map<int, std::unordered_map<int, bool>>& map2, int x, int y) {
+bool mapsOverlapAtCoordinate(std::unordered_map<int, std::unordered_map<int, int>>& map1, std::unordered_map<int, std::unordered_map<int, int>>& map2, int x, int y) {
 	if (map1.find(x) != map1.end() && map2.find(x) != map2.end()) {
 		if (map1[x].find(y) != map1[x].end() && map2[x].find(y) != map2[x].end()) {
 			return true;
