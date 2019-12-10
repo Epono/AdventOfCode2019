@@ -5,6 +5,7 @@
 #include "Src/Day3.hpp"
 #include "Src/Day4.hpp"
 #include "Src/Day5.hpp"
+#include "Day6.hpp"
 
 int main()
 {
@@ -12,5 +13,6 @@ int main()
 	//day2();
 	//day3();
 	//day4();
-	day5();
+	//day5();
+	day6();
 }
