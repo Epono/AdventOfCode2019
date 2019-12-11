@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Day6.hpp" />
+    <ClInclude Include="Day7.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Src\Day1.hpp" />
     <ClInclude Include="Src\Day2.hpp" />
@@ -163,6 +164,7 @@
   <ItemGroup>
     <ClCompile Include="AdventOfCode2019.cpp" />
     <ClCompile Include="Day6.cpp" />
+    <ClCompile Include="Day7.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -182,6 +184,7 @@
     <Text Include="Data\Day4.txt" />
     <Text Include="Data\Day5.txt" />
     <Text Include="Day6.txt" />
+    <Text Include="Day7.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
