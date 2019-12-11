@@ -10,6 +10,9 @@
 
 int runIntcodeComputer2(std::vector<int>& values, int firstInput, int secondInput);
 
+// Finished, firstTime, cursorPosition, Value returned
+//std::tuple<bool, bool, int, int>
+
 void day7() {
 	std::ifstream inputFile("Day7.txt");
 	std::string line;
@@ -24,28 +27,37 @@ void day7() {
 	std::transform(strings.begin(), strings.end(), std::back_inserter(numbersOriginal), &boost::lexical_cast<int, std::string>);
 
 	// Reliquat, je garde lol
-	std::vector<int> numbers(numbersOriginal.size());
+	std::vector<int> numbers1(numbersOriginal.size());
+	std::vector<int> numbers2(numbersOriginal.size());
+	std::vector<int> numbers3(numbersOriginal.size());
+	std::vector<int> numbers4(numbersOriginal.size());
+	std::vector<int> numbers5(numbersOriginal.size());
 	//std::copy(numbersOriginal.begin(), numbersOriginal.end(), numbers.begin());
 
 	int maxResult = 0;
 	std::tuple<int, int, int, int, int> sequence;
 
-	std::vector<int> range{ 0, 1, 2, 3, 4 };
+	std::vector<int> range{ 5, 6, 7, 8, 9 };
 	do {
-		std::copy(numbersOriginal.begin(), numbersOriginal.end(), numbers.begin());
-		int result1 = runIntcodeComputer2(numbers, range[0], 0);
+		std::copy(numbersOriginal.begin(), numbersOriginal.end(), numbers1.begin());
+		std::copy(numbersOriginal.begin(), numbersOriginal.end(), numbers2.begin());
+		std::copy(numbersOriginal.begin(), numbersOriginal.end(), numbers3.begin());
+		std::copy(numbersOriginal.begin(), numbersOriginal.end(), numbers4.begin());
+		std::copy(numbersOriginal.begin(), numbersOriginal.end(), numbers5.begin());
 
-		std::copy(numbersOriginal.begin(), numbersOriginal.end(), numbers.begin());
-		int result2 = runIntcodeComputer2(numbers, range[1], result1);
+		int result1 = 0;
+		int result2 = 0;
+		int result3 = 0;
+		int result4 = 0;
+		int result5 = 0;
 
-		std::copy(numbersOriginal.begin(), numbersOriginal.end(), numbers.begin());
-		int result3 = runIntcodeComputer2(numbers, range[2], result2);
-
-		std::copy(numbersOriginal.begin(), numbersOriginal.end(), numbers.begin());
-		int result4 = runIntcodeComputer2(numbers, range[3], result3);
-
-		std::copy(numbersOriginal.begin(), numbersOriginal.end(), numbers.begin());
-		int result5 = runIntcodeComputer2(numbers, range[4], result4);
+		while (true) {
+			result1 = runIntcodeComputer2(numbers1, range[0], result5);
+			result2 = runIntcodeComputer2(numbers2, range[1], result1);
+			result3 = runIntcodeComputer2(numbers3, range[2], result2);
+			result4 = runIntcodeComputer2(numbers4, range[3], result3);
+			result5 = runIntcodeComputer2(numbers5, range[4], result4);
+		}
 
 		if (result5 > maxResult) {
 			maxResult = result5;
